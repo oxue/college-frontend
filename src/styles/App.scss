@@ -1,0 +1,47 @@
+.card-container {
+  text-align: center;
+  widows: 100%;
+
+  .college-card {
+    display: inline-block;
+    background-color: beige;
+    width: 70%;
+    margin: 5px;
+  }
+}
+
+
+.home-banner {
+  background-color: #333;
+  background-image: url("/uoft.jpg");
+  background-blend-mode: multiply;
+  color: white;
+  height: 500px;
+  padding: 50px;
+
+  .banner-text {
+    h1 {
+      font-size: 96px;
+    }
+    h3 {
+      padding-left: 10px;
+      font-size: 24px;
+    }
+  }
+  .home-college-search-box {
+    margin-top: 100px;
+    width: 500px;
+  }
+
+}
+
+.navigation-link {
+  a {
+    color:black;
+    font-weight:bold;
+  }
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

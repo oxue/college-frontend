@@ -1,25 +1,59 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./styles/App.scss";
+import CollegeCard from "./CollegeCard.js";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Home from "./components/Home";
+import {getXhr} from './lib/util';
+
+console.log(getXhr);
+
+
+class Colleges extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  state = {
+    universities: []
+  };
+
+  componentDidMount() {
+    getXhr("http://localhost:3000/colleges", (res)=>{
+      this.setState({ universities: res });
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <div className="card-container">
+          {this.state.universities.map(university => (
+            <CollegeCard university_data={university} key={university._id} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Router>
+          <div>
+            <nav>
+              <span className="navigation-link">
+                <Link to="/">Home</Link>
+              </span>
+              <span className="navigation-link">
+                <Link to="/colleges/">Colleges</Link>
+              </span>
+            </nav>
+            <Route path="/" exact component={Home} />
+            <Route path="/colleges/" exact component={Colleges} />
+          </div>
+        </Router>
       </div>
     );
   }
